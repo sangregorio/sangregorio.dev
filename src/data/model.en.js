@@ -7,11 +7,11 @@ export const model = {
       urlText: "paolo.sangregorio.dev",
       image: "/images/paolo.png",
       name: "Paolo Sangregorio",
-      role: "Engineering Manager at Google",
+      role: "Staff Forward Deployed Engineer at Google",
       birthYear: 1989,
       birthMonth: 5,
       birthDay: 8,
-      location: "Dublin, Ireland"
+      location: "Milan, Italy"
     },
     {
       url: "https://fabio.sangregorio.dev",
