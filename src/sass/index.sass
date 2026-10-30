@@ -1,161 +1,186 @@
-.page-main
+@use "variables"
+
+// Light palette from paolo.sangregorio.dev, used regardless of the system theme.
+:root
+  --bg: #f7f6f2
+  --bg-glow-1: rgba(47, 140, 108, 0.16)
+  --bg-glow-2: rgba(70, 76, 170, 0.08)
+  --surface: rgba(255, 255, 255, 0.7)
+  --surface-hover: #ffffff
+  --border: rgba(20, 30, 25, 0.09)
+  --text: #141816
+  --muted: #5b6561
+  --faint: #8a938f
+  --accent: #23735a
+  --dot: rgba(20, 60, 45, 0.07)
+  --shadow: rgba(20, 30, 25, 0.18)
+  color-scheme: light
+
+body
+  color: var(--text)
+  line-height: variables.$body--lh
+  -webkit-font-smoothing: antialiased
+  background: radial-gradient(900px 520px at 85% -10%, var(--bg-glow-1), transparent 65%), radial-gradient(700px 420px at -10% 60%, var(--bg-glow-2), transparent 65%), radial-gradient(var(--dot) 1px, transparent 1px) 0 0 / 28px 28px, var(--bg)
+  background-attachment: fixed, fixed, scroll, fixed
+
+.mono
+  font-family: variables.$mono--ff
+
+.page
+  font-family: variables.$body--ff
+  max-width: variables.$page--max-width
+  min-height: 100vh
+  margin: 0 auto
+  padding: 72px 24px 32px
   display: flex
   flex-direction: column
-  justify-content: center
-  align-items: center
-  padding-top: 1.25rem
-  padding-bottom: 1.25rem
-  min-height: calc(100vh - 6rem)
+
+.intro
+  text-align: center
+  max-width: 40rem
+  margin: 0 auto
+
+.eyebrow
+  font-size: 0.78rem
+  letter-spacing: 0.14em
+  text-transform: uppercase
+  color: var(--accent)
 
 .header
-  font-weight: bold
-  font-size: 3rem
-  text-align: center
+  font-size: clamp(2.2rem, 5vw, 3.5rem)
+  line-height: 1.05
+  letter-spacing: -0.035em
+  font-weight: 700
+  margin-top: 18px
 
-.cards-container
-  display: flex
-  justify-content: center
-  align-items: center
-  margin-top: 5.625rem
-  margin-bottom: 5.625rem
+.lede
+  font-size: 1.15rem
+  color: var(--muted)
+  margin-top: 22px
 
-$card-width: 31.25rem
+.cards
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 24px
+  margin: 56px auto 0
+  width: 100%
+  max-width: 46rem
+
 .card
-  width: $card-width
-  box-shadow: 0rem 0.25rem 1.25rem rgba(0, 0, 0, 0.25)
-  border-radius: 0.5rem
-  overflow: hidden
-  margin-left: 4.6875rem
-  margin-right: 4.6875rem
-  position: relative
-  &:first-child
-    margin-left: 0
-  &:last-child
-    margin-right: 0
+  display: flex
+  flex-direction: column
+  padding: 14px
+  border: 1px solid var(--border)
+  border-radius: 24px
+  background: var(--surface)
+  backdrop-filter: blur(6px)
+  transition: background .25s, border-color .25s, transform .25s, box-shadow .25s
+  &:hover, &:focus-visible
+    background: var(--surface-hover)
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent)
+    transform: translateY(-3px)
+    box-shadow: 0 24px 60px -28px var(--shadow)
+    .photo img
+      transform: scale(1.03)
+    .link
+      color: var(--text)
+    .arrow
+      transform: translateX(4px)
+  &:focus-visible
+    outline: 2px solid var(--accent)
+    outline-offset: 3px
 
-.profile-img
-  height: $card-width
-  background-position: center
-  background-size: cover
+.photo
+  border-radius: 16px
+  overflow: hidden
+  aspect-ratio: 1
+  img
+    display: block
+    width: 100%
+    height: 100%
+    object-fit: cover
+    transition: transform .5s ease
 
 .card-info
-  padding: 1.4375rem 1.875rem
+  padding: 22px 10px 8px
+  display: flex
+  flex-direction: column
+  flex: 1
 
 .person-name
-  font-weight: bold 
-  font-size: 2rem
-  margin-bottom: 0.625rem
-  letter-spacing: -0.0313rem
+  font-size: 1.5rem
+  font-weight: 600
+  letter-spacing: -0.02em
+  line-height: 1.2
 
 .person-role
-  font-size: 1.25rem
-  color: #333
+  margin-top: 6px
+  color: var(--muted)
+  .at
+    color: var(--faint)
+  .company
+    color: var(--accent)
+    font-weight: 500
 
-.person-info
-  font-size: 1.125rem
-  text-align: right
-  color: #999
-  margin-top: 2.8125rem
- 
+.person-location
+  color: var(--faint)
+  font-size: 0.92rem
+  margin-top: 2px
+  margin-bottom: 22px
+
+.link
+  display: inline-flex
+  align-items: center
+  gap: 10px
+  margin-top: auto
+  padding-top: 16px
+  border-top: 1px solid var(--border)
+  color: var(--accent)
+  font-size: 0.92rem
+  transition: color .2s
+
+.arrow
+  transition: transform .25s ease
+
 .footer
-  color: #999
+  margin-top: auto
+  padding-top: 48px
+  text-align: center
+  color: var(--faint)
+  font-size: 0.82rem
 
-.header, .footer, .cards-container
+.intro, .cards, .footer
   opacity: 0
-  visibility: hidden
-  animation: fade forwards 0.7s 0.1s ease-in-out
+  animation: fade-up .7s .1s ease forwards
 
-.cards-container
-  animation-delay: 0.4s
+.cards
+  animation-delay: .3s
 
 .footer
-  animation-delay: 0.8s
+  animation-delay: .6s
 
-.separator
-  display: inline-block
-  margin-left: 0.625rem
-  margin-right: 0.625rem
-
-@keyframes fade
-  0%
+@keyframes fade-up
+  from
     opacity: 0
-    visibility: hidden
-  100%
+    transform: translateY(12px)
+  to
     opacity: 1
-    visibility: visible
+    transform: none
 
-.overlay
-  opacity: 0
-  visibility: hidden
-  background: rgba(0, 0, 0, 0.57)
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-direction: column
-  transition: all .3s ease-out
-  z-index: 1
-
-.card-content
-  transition: all .3s ease-out
-
-
-.link-text
-  color: white
-  font-weight: bold
-  font-size: 1.625rem
-  margin-bottom: 0.625rem
-  letter-spacing: 0.0313rem
-  transition: margin-bottom 0.4s ease-out
-
-.link-arrow
-  margin-top: 0.625rem
-  background: white
-  border-radius: 100px
-  width: 4.375rem
-  height: 4.375rem
-  display: flex
-  align-items: center
-  justify-content: center
-  transition: margin-top 0.4s ease-out, transform 0.3s ease-out
-  &:hover
-    transform: scale(1.15)
-
-.card:hover
-  .overlay
+@media (prefers-reduced-motion: reduce)
+  .intro, .cards, .footer
+    animation: none
     opacity: 1
-    visibility: visible
-  .card-content
-    filter: blur(0.625rem)
-  .link-text
-    margin-bottom: 1.5625rem
-  .link-arrow
-    margin-top: 1.5625rem
+  .card, .photo img, .arrow
+    transition: none
 
-@media (max-width: 1366px) 
-  html
-    font-size: 13px
-
-@media (max-width: 1023px)
-  html
-    font-size: 12px
-  .header
-    font-size: 30px
-  .page-main
-    padding-left: 30px
-    padding-right: 30px
-  .cards-container
-    flex-direction: column
-    width: 100%
-  .card
-    margin-left: 0
-    margin-right: 0
-    margin-bottom: 50px
-    width: 100%
-    max-width: 450px
-    &:last-child
-      margin-bottom: 0
+@media (max-width: 720px)
+  .page
+    padding: 56px 16px 32px
+  .lede
+    font-size: 1.05rem
+  .cards
+    grid-template-columns: 1fr
+    gap: 16px
+    margin-top: 40px
+    max-width: 28rem

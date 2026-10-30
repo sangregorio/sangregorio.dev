@@ -1,79 +1,60 @@
 import Head from 'next/head';
 import { model } from '../data/model.en';
 
-function dateDiffInYears(dateold, datenew) {
-  var mnew = datenew.getMonth();
-  var mold = dateold.getMonth();
-  var diff = datenew.getFullYear() - dateold.getFullYear();
-  if (mold > mnew) diff--;
-  else if (mold == mnew && dateold.getDate() > datenew.getDate())
-    diff--;
-  return diff;
+const description = 'Landing page for the Sangregorio brothers: Paolo and Fabio Sangregorio, software engineers based in Milan.';
+
+function Arrow() {
+  return (
+    <svg className="arrow" width="18" height="14" viewBox="0 0 30 23" aria-hidden="true">
+      <path d="M18.5368 0.0108948L17.0211 1.56177L25.8632 10.4239H0V12.5761H25.8632L17.0211 21.4382L18.5368 22.9891L30 11.5L18.5368 0.0108948Z" fill="currentColor" />
+    </svg>
+  );
 }
 
-export async function getStaticProps() {
-  const now = new Date();
-  
-  // Calculate ages at build time
-  const peopleWithAge = model.people.map(person => {
-    const birthday = new Date(person.birthYear, person.birthMonth, person.birthDay);
-    return {
-      ...person,
-      age: dateDiffInYears(birthday, now)
-    };
-  });
-
-  return {
-    props: {
-      model: {
-        ...model,
-        people: peopleWithAge
-      }
-    }
-  };
-}
-
-export default function Home({ model }) {
+export default function Home() {
   return (
     <>
       <Head>
-        <link rel="icon" href="data:," />
+        <title>Sangregorio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={description} />
+        <meta name="theme-color" content="#f7f6f2" />
+        <meta property="og:title" content="Sangregorio" />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content="https://sangregorio.dev/" />
+        <link rel="canonical" href="https://sangregorio.dev/" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
-      <div className="page-main">
-        <header><h1 className="header">{model.header}</h1></header>
+      <div className="page">
+        <header className="intro">
+          <p className="eyebrow mono">{model.eyebrow}</p>
+          <h1 className="header">{model.header}</h1>
+          <p className="lede">{model.lede}</p>
+        </header>
 
-        <div className="cards-container">
+        <div className="cards">
           {model.people.map(person => (
-            <article key={person.name} className="card">
-              <div className="overlay">
-                <a className="link-text" href={person.url}>{person.urlText}</a>
-                <a className="link-arrow" href={person.url}>
-                  <img src="/images/arrow.svg" alt="Go to website" />
-                </a>
+            <a key={person.name} className="card" href={person.url}>
+              <div className="photo">
+                <img src={person.image} alt={person.name} width="500" height="500" />
               </div>
-              <div className="card-content">
-                <div 
-                  className="profile-img" 
-                  style={{ backgroundImage: `url(${person.image})` }}
-                />
-                <div className="card-info">
-                  <header>
-                    <h2 className="person-name">{person.name}</h2>
-                    <div className="person-role">{person.role}</div>
-                  </header>
-                  <div className="person-info">
-                    Age {person.age}
-                    <span className="separator">-</span>
-                    {person.location}
-                  </div>
-                </div>
+              <div className="card-info">
+                <h2 className="person-name">{person.name}</h2>
+                <p className="person-role">
+                  {person.role} <span className="at">at</span> <span className="company">{person.company}</span>
+                </p>
+                <p className="person-location">{person.location}</p>
+                <span className="link mono">
+                  {person.urlText}
+                  <Arrow />
+                </span>
               </div>
-            </article>
+            </a>
           ))}
         </div>
 
-        <footer className="footer">{model.footer}</footer>
+        <footer className="footer mono">{model.footer}</footer>
       </div>
     </>
   );
-} 
+}

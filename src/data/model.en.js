@@ -1,5 +1,7 @@
 export const model = {
+  eyebrow: "sangregorio.dev",
   header: "Which Sangregorio are you looking for?",
+  lede: "Two brothers, one surname, both building software. Pick the one you came for.",
   footer: "(yeah, I know, we're both software engineers...)",
   people: [
     {
@@ -7,10 +9,8 @@ export const model = {
       urlText: "paolo.sangregorio.dev",
       image: "/images/paolo.png",
       name: "Paolo Sangregorio",
-      role: "Staff Forward Deployed Engineer at Google",
-      birthYear: 1989,
-      birthMonth: 5,
-      birthDay: 8,
+      role: "Staff Forward Deployed Engineer",
+      company: "Google",
       location: "Milan, Italy"
     },
     {
@@ -18,10 +18,8 @@ export const model = {
       urlText: "fabio.sangregorio.dev",
       image: "/images/fabio.png",
       name: "Fabio Sangregorio",
-      role: "Software Engineer at Bending Spoons",
-      birthYear: 1997,
-      birthMonth: 9,
-      birthDay: 14,
+      role: "Software Engineer",
+      company: "Bending Spoons",
       location: "Milan, Italy"
     }
   ]
