@@ -1,36 +1,20 @@
 @use "variables"
 
-// Colors follow paolo.sangregorio.dev: dark first, light when the system asks for it.
+// Light palette from paolo.sangregorio.dev, used regardless of the system theme.
 :root
-  --bg: #0c0f0e
-  --bg-glow-1: rgba(47, 140, 108, 0.28)
-  --bg-glow-2: rgba(70, 76, 170, 0.18)
-  --surface: rgba(255, 255, 255, 0.035)
-  --surface-hover: rgba(255, 255, 255, 0.06)
-  --border: rgba(255, 255, 255, 0.08)
-  --text: #eef2ef
-  --muted: #9aa6a1
-  --faint: #6c7772
-  --accent: #8fd3b6
-  --dot: rgba(200, 238, 222, 0.07)
-  --shadow: rgba(0, 0, 0, 0.55)
-  color-scheme: dark
-
-@media (prefers-color-scheme: light)
-  :root
-    --bg: #f7f6f2
-    --bg-glow-1: rgba(47, 140, 108, 0.16)
-    --bg-glow-2: rgba(70, 76, 170, 0.08)
-    --surface: rgba(255, 255, 255, 0.7)
-    --surface-hover: #ffffff
-    --border: rgba(20, 30, 25, 0.09)
-    --text: #141816
-    --muted: #5b6561
-    --faint: #8a938f
-    --accent: #23735a
-    --dot: rgba(20, 60, 45, 0.07)
-    --shadow: rgba(20, 30, 25, 0.18)
-    color-scheme: light
+  --bg: #f7f6f2
+  --bg-glow-1: rgba(47, 140, 108, 0.16)
+  --bg-glow-2: rgba(70, 76, 170, 0.08)
+  --surface: rgba(255, 255, 255, 0.7)
+  --surface-hover: #ffffff
+  --border: rgba(20, 30, 25, 0.09)
+  --text: #141816
+  --muted: #5b6561
+  --faint: #8a938f
+  --accent: #23735a
+  --dot: rgba(20, 60, 45, 0.07)
+  --shadow: rgba(20, 30, 25, 0.18)
+  color-scheme: light
 
 body
   color: var(--text)

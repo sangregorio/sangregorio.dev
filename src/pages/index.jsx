@@ -18,7 +18,7 @@ export default function Home() {
         <title>Sangregorio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={description} />
-        <meta name="theme-color" content="#0c0f0e" />
+        <meta name="theme-color" content="#f7f6f2" />
         <meta property="og:title" content="Sangregorio" />
         <meta property="og:description" content={description} />
         <meta property="og:url" content="https://sangregorio.dev/" />
